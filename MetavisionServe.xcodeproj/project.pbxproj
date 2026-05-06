@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F2BA46F52B0D414EF8BAA09 /* BallTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7201D3F665E7AD9495A76F8A /* BallTracker.swift */; };
+		325B781E9A1CA93EC62ED21D /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 75E99D8F16F6C04258909263 /* .gitkeep */; };
 		3720D031AF779978D76720C9 /* ServeBatchReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969A03FA8AC798E24616993 /* ServeBatchReport.swift */; };
 		45867525C10753B475EA84DE /* ServeConfirmCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3746FA9DDA1CF5BF9F86B1 /* ServeConfirmCard.swift */; };
 		59B718FDE1557B9EF49D5BFC /* DrillLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF286B0427CCC06EE8B7F0F5 /* DrillLibrary.swift */; };
@@ -23,6 +24,7 @@
 		9D02EEF1FC8E748A1F6F769A /* ServeMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7463F3F812B26596980F62 /* ServeMetrics.swift */; };
 		A0C71E1852EEE290D667FE54 /* MWDATCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2AD088797EA5E1CFF28FFC /* MWDATCore */; };
 		AF8F5F3DEADE64E114D3709E /* MWDATCamera in Frameworks */ = {isa = PBXBuildFile; productRef = 062BDBA7121473750E8170E9 /* MWDATCamera */; };
+		AF9DA1A8EA09B961E22D1EA2 /* Drills.json in Resources */ = {isa = PBXBuildFile; fileRef = D5B7A407581C0E50CAD24D2D /* Drills.json */; };
 		B26CAD99DE598EEEC7299217 /* ServeSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C7565AF775292FB4F5502C /* ServeSessionController.swift */; };
 		CE3255C6E792F0A35E85167E /* BatchReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5537319BE05BA5203595448D /* BatchReportView.swift */; };
 		D0C7863F12142F8F2F4DA84F /* OverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A853CAD49F0458FE3537BB4 /* OverlayRenderer.swift */; };
@@ -46,12 +48,14 @@
 		57814C2F30D4E07B4E21DEAC /* MetavisionServe.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MetavisionServe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BBC4153F6303547EF7C6BCF /* MetavisionServeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetavisionServeApp.swift; sourceTree = "<group>"; };
 		7201D3F665E7AD9495A76F8A /* BallTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallTracker.swift; sourceTree = "<group>"; };
+		75E99D8F16F6C04258909263 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		85B9D52DDA1B47307D62DDDA /* ServeClipBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeClipBuffer.swift; sourceTree = "<group>"; };
 		9B685D8EDFB2D9593D8C7580 /* PracticeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeStore.swift; sourceTree = "<group>"; };
 		AA3746FA9DDA1CF5BF9F86B1 /* ServeConfirmCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeConfirmCard.swift; sourceTree = "<group>"; };
 		B2C7565AF775292FB4F5502C /* ServeSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeSessionController.swift; sourceTree = "<group>"; };
 		B55295C43150A9D551D64CE6 /* ServeMetricsExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeMetricsExtractor.swift; sourceTree = "<group>"; };
 		D524F6FCB1AF674054C91AF1 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
+		D5B7A407581C0E50CAD24D2D /* Drills.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Drills.json; sourceTree = "<group>"; };
 		E46FA13DC032863B1635868D /* ServeSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeSample.swift; sourceTree = "<group>"; };
 		E6FD2AF0CEE13DFAF132E373 /* ServeASR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeASR.swift; sourceTree = "<group>"; };
 		EF286B0427CCC06EE8B7F0F5 /* DrillLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillLibrary.swift; sourceTree = "<group>"; };
@@ -92,6 +96,14 @@
 			path = Feedback;
 			sourceTree = "<group>";
 		};
+		4243823D98CEDE87715C8F5D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D5B7A407581C0E50CAD24D2D /* Drills.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		451C339BA3BD7CEAD7715C90 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				CA1748D75C299748AE904929 /* MetavisionServe */,
+				C418316E5A4D9984615EB44F /* MockClips */,
+				4243823D98CEDE87715C8F5D /* Resources */,
 				451C339BA3BD7CEAD7715C90 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -150,6 +164,14 @@
 				0F69BA1B159C2C5E9BFB7F04 /* TutorVoice.swift */,
 			);
 			path = Voice;
+			sourceTree = "<group>";
+		};
+		C418316E5A4D9984615EB44F /* MockClips */ = {
+			isa = PBXGroup;
+			children = (
+				75E99D8F16F6C04258909263 /* .gitkeep */,
+			);
+			path = MockClips;
 			sourceTree = "<group>";
 		};
 		CA1748D75C299748AE904929 /* MetavisionServe */ = {
@@ -189,6 +211,7 @@
 			buildConfigurationList = 05C22705649CF4073B7C04E4 /* Build configuration list for PBXNativeTarget "MetavisionServe" */;
 			buildPhases = (
 				A0264AE86540C46AB77472DC /* Sources */,
+				CA16ECB0AA2205C4DB0FB099 /* Resources */,
 				B09CA7C75D76671930155569 /* Frameworks */,
 			);
 			buildRules = (
@@ -237,6 +260,18 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CA16ECB0AA2205C4DB0FB099 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				325B781E9A1CA93EC62ED21D /* .gitkeep in Resources */,
+				AF9DA1A8EA09B961E22D1EA2 /* Drills.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A0264AE86540C46AB77472DC /* Sources */ = {
