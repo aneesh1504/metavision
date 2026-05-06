@@ -158,18 +158,35 @@ final class ServeSessionController: ObservableObject {
 
     private func finishLabeling(event: ServeDetectionEvent, outcome: ServeOutcome, serveNumber: ServeNumber) {
         isAwaitingLabel = false
+        guard let store = practiceStore else { return }
+        recordSample(
+            event: event,
+            outcome: outcome,
+            serveNumber: serveNumber,
+            labelSource: .userVoice,
+            in: store
+        )
+    }
+
+    private func recordSample(
+        event: ServeDetectionEvent,
+        outcome: ServeOutcome,
+        serveNumber: ServeNumber,
+        labelSource: ServeSample.LabelSource,
+        in store: PracticeStore
+    ) {
         let sample = ServeSample(
             id: UUID(),
-            sessionID: practiceStore?.sessionID ?? UUID(),
+            sessionID: store.sessionID,
             timestamp: event.detectorEvent.detectedAt,
             serveNumber: serveNumber,
             outcome: outcome,
             metrics: event.metrics,
             apexFrameFilename: nil,
             contactFrameFilename: nil,
-            labelSource: .userVoice
+            labelSource: labelSource
         )
-        practiceStore?.addSample(sample)
+        store.addSample(sample)
         confirmedCount += 1
         checkBatchThreshold()
     }
@@ -179,12 +196,16 @@ final class ServeSessionController: ObservableObject {
         pendingConfirm = event
     }
 
-    func confirmSample(_ sample: ServeSample, in store: PracticeStore) {
-        store.addSample(sample)
-        confirmedCount += 1
+    func confirmSample(event: ServeDetectionEvent, serveNumber: ServeNumber, outcome: ServeOutcome, in store: PracticeStore) {
+        recordSample(
+            event: event,
+            outcome: outcome,
+            serveNumber: serveNumber,
+            labelSource: .userTap,
+            in: store
+        )
         pendingConfirm = nil
         isAwaitingLabel = false
-        checkBatchThreshold()
     }
 
     // MARK: - Batch

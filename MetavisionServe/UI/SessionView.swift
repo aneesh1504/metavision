@@ -24,8 +24,13 @@ struct SessionView: View {
             }
         }
         .sheet(item: $sessionController.pendingConfirm) { event in
-            ServeConfirmCard(event: event) { sample in
-                sessionController.confirmSample(sample, in: practiceStore)
+            ServeConfirmCard(event: event) { serveNumber, outcome in
+                sessionController.confirmSample(
+                    event: event,
+                    serveNumber: serveNumber,
+                    outcome: outcome,
+                    in: practiceStore
+                )
             }
         }
         .alert("Batch Ready", isPresented: $sessionController.showBatchPrompt) {

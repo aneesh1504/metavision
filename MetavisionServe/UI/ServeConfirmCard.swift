@@ -4,13 +4,13 @@ import SwiftUI
 /// User taps to confirm outcome and serve number.
 struct ServeConfirmCard: View {
     let event: ServeDetectionEvent
-    let onConfirm: (ServeSample) -> Void
+    let onConfirm: (ServeNumber, ServeOutcome) -> Void
 
     @State private var serveNumber: ServeNumber = .first
     @State private var outcome: ServeOutcome = .inPlay
     @Environment(\.dismiss) private var dismiss
 
-    init(event: ServeDetectionEvent, onConfirm: @escaping (ServeSample) -> Void) {
+    init(event: ServeDetectionEvent, onConfirm: @escaping (ServeNumber, ServeOutcome) -> Void) {
         self.event = event
         self.onConfirm = onConfirm
         _serveNumber = State(initialValue: event.suggestedServeNumber)
@@ -55,18 +55,7 @@ struct ServeConfirmCard: View {
                 Spacer()
 
                 Button("Confirm") {
-                    let sample = ServeSample(
-                        id: UUID(),
-                        sessionID: UUID(),
-                        timestamp: event.detectorEvent.detectedAt,
-                        serveNumber: serveNumber,
-                        outcome: outcome,
-                        metrics: event.metrics,
-                        apexFrameFilename: nil,
-                        contactFrameFilename: nil,
-                        labelSource: .userTap
-                    )
-                    onConfirm(sample)
+                    onConfirm(serveNumber, outcome)
                     dismiss()
                 }
                 .buttonStyle(.borderedProminent)
