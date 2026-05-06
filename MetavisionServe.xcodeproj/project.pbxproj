@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F2BA46F52B0D414EF8BAA09 /* BallTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7201D3F665E7AD9495A76F8A /* BallTracker.swift */; };
+		3720D031AF779978D76720C9 /* ServeBatchReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969A03FA8AC798E24616993 /* ServeBatchReport.swift */; };
+		45867525C10753B475EA84DE /* ServeConfirmCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3746FA9DDA1CF5BF9F86B1 /* ServeConfirmCard.swift */; };
+		59B718FDE1557B9EF49D5BFC /* DrillLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF286B0427CCC06EE8B7F0F5 /* DrillLibrary.swift */; };
+		5ECD99663C8BD59A72CAAF85 /* ServeSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46FA13DC032863B1635868D /* ServeSample.swift */; };
+		665AFB741521383A3787A460 /* TutorVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F69BA1B159C2C5E9BFB7F04 /* TutorVoice.swift */; };
+		6739B523BD1052D102E9AE08 /* ServeASR.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD2AF0CEE13DFAF132E373 /* ServeASR.swift */; };
+		707617707D22CB483F062B62 /* HSTNSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012232E69C1725EF64FC71FB /* HSTNSessionManager.swift */; };
+		875D331466069FEC013F9250 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AC60BBEA6015FE72F71F63 /* ContentView.swift */; };
+		88D9123FBC2B5837CA3BCCEF /* ServeMetricsExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55295C43150A9D551D64CE6 /* ServeMetricsExtractor.swift */; };
+		8BFE708765DFA1D3A8861039 /* FeedbackEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505764D56FFCD580BE8EA9F5 /* FeedbackEngine.swift */; };
+		8E1BD3591EEA32EB8FD2AF2C /* MWDATMockDevice in Frameworks */ = {isa = PBXBuildFile; productRef = 991528A66F0B2976BF725DF5 /* MWDATMockDevice */; };
+		986770740B60DE8FEF334514 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D524F6FCB1AF674054C91AF1 /* SessionView.swift */; };
+		9D02EEF1FC8E748A1F6F769A /* ServeMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7463F3F812B26596980F62 /* ServeMetrics.swift */; };
+		A0C71E1852EEE290D667FE54 /* MWDATCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2AD088797EA5E1CFF28FFC /* MWDATCore */; };
+		AF8F5F3DEADE64E114D3709E /* MWDATCamera in Frameworks */ = {isa = PBXBuildFile; productRef = 062BDBA7121473750E8170E9 /* MWDATCamera */; };
+		B26CAD99DE598EEEC7299217 /* ServeSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C7565AF775292FB4F5502C /* ServeSessionController.swift */; };
+		CE3255C6E792F0A35E85167E /* BatchReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5537319BE05BA5203595448D /* BatchReportView.swift */; };
+		D0C7863F12142F8F2F4DA84F /* OverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A853CAD49F0458FE3537BB4 /* OverlayRenderer.swift */; };
+		DEC3AE9AF7B470C27C277146 /* MetavisionServeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBC4153F6303547EF7C6BCF /* MetavisionServeApp.swift */; };
+		EB723745AD56DBCDA1610EFD /* PracticeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B685D8EDFB2D9593D8C7580 /* PracticeStore.swift */; };
+		ED0960F07695A7FF2AB64212 /* ServeClipBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B9D52DDA1B47307D62DDDA /* ServeClipBuffer.swift */; };
+		F2F9AA9DE546D35351B184A6 /* ServeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F51C4172FFC9870EADBD87 /* ServeDetector.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		012232E69C1725EF64FC71FB /* HSTNSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSTNSessionManager.swift; sourceTree = "<group>"; };
+		0F69BA1B159C2C5E9BFB7F04 /* TutorVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorVoice.swift; sourceTree = "<group>"; };
+		10F51C4172FFC9870EADBD87 /* ServeDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeDetector.swift; sourceTree = "<group>"; };
+		1A853CAD49F0458FE3537BB4 /* OverlayRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayRenderer.swift; sourceTree = "<group>"; };
+		350EB2B126DF730A5ABE4EDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4969A03FA8AC798E24616993 /* ServeBatchReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeBatchReport.swift; sourceTree = "<group>"; };
+		4B7463F3F812B26596980F62 /* ServeMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeMetrics.swift; sourceTree = "<group>"; };
+		505764D56FFCD580BE8EA9F5 /* FeedbackEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackEngine.swift; sourceTree = "<group>"; };
+		53AC60BBEA6015FE72F71F63 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5537319BE05BA5203595448D /* BatchReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchReportView.swift; sourceTree = "<group>"; };
+		57814C2F30D4E07B4E21DEAC /* MetavisionServe.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MetavisionServe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BBC4153F6303547EF7C6BCF /* MetavisionServeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetavisionServeApp.swift; sourceTree = "<group>"; };
+		7201D3F665E7AD9495A76F8A /* BallTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallTracker.swift; sourceTree = "<group>"; };
+		85B9D52DDA1B47307D62DDDA /* ServeClipBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeClipBuffer.swift; sourceTree = "<group>"; };
+		9B685D8EDFB2D9593D8C7580 /* PracticeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeStore.swift; sourceTree = "<group>"; };
+		AA3746FA9DDA1CF5BF9F86B1 /* ServeConfirmCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeConfirmCard.swift; sourceTree = "<group>"; };
+		B2C7565AF775292FB4F5502C /* ServeSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeSessionController.swift; sourceTree = "<group>"; };
+		B55295C43150A9D551D64CE6 /* ServeMetricsExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeMetricsExtractor.swift; sourceTree = "<group>"; };
+		D524F6FCB1AF674054C91AF1 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
+		E46FA13DC032863B1635868D /* ServeSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeSample.swift; sourceTree = "<group>"; };
+		E6FD2AF0CEE13DFAF132E373 /* ServeASR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeASR.swift; sourceTree = "<group>"; };
+		EF286B0427CCC06EE8B7F0F5 /* DrillLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillLibrary.swift; sourceTree = "<group>"; };
+		FBF4AD79E0024EA6102F9C58 /* MetavisionServe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetavisionServe.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B09CA7C75D76671930155569 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0C71E1852EEE290D667FE54 /* MWDATCore in Frameworks */,
+				AF8F5F3DEADE64E114D3709E /* MWDATCamera in Frameworks */,
+				8E1BD3591EEA32EB8FD2AF2C /* MWDATMockDevice in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1630D8E332C75BC7C87C2E37 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5537319BE05BA5203595448D /* BatchReportView.swift */,
+				AA3746FA9DDA1CF5BF9F86B1 /* ServeConfirmCard.swift */,
+				B2C7565AF775292FB4F5502C /* ServeSessionController.swift */,
+				D524F6FCB1AF674054C91AF1 /* SessionView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		37AB48103ADDE898FA783764 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				505764D56FFCD580BE8EA9F5 /* FeedbackEngine.swift */,
+				1A853CAD49F0458FE3537BB4 /* OverlayRenderer.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		451C339BA3BD7CEAD7715C90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				57814C2F30D4E07B4E21DEAC /* MetavisionServe.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		45474DC45BFEA7C78C7D6D4B /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				012232E69C1725EF64FC71FB /* HSTNSessionManager.swift */,
+				85B9D52DDA1B47307D62DDDA /* ServeClipBuffer.swift */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
+		669018AFBA6568549C74F8F2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				53AC60BBEA6015FE72F71F63 /* ContentView.swift */,
+				6BBC4153F6303547EF7C6BCF /* MetavisionServeApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		67C93A55622F1EAC13FB3093 /* Detection */ = {
+			isa = PBXGroup;
+			children = (
+				10F51C4172FFC9870EADBD87 /* ServeDetector.swift */,
+			);
+			path = Detection;
+			sourceTree = "<group>";
+		};
+		6F4C9EF93CED384751D96D45 = {
+			isa = PBXGroup;
+			children = (
+				CA1748D75C299748AE904929 /* MetavisionServe */,
+				451C339BA3BD7CEAD7715C90 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9DA3B184C81FDBD503732A74 /* Metrics */ = {
+			isa = PBXGroup;
+			children = (
+				7201D3F665E7AD9495A76F8A /* BallTracker.swift */,
+				B55295C43150A9D551D64CE6 /* ServeMetricsExtractor.swift */,
+			);
+			path = Metrics;
+			sourceTree = "<group>";
+		};
+		C33FE11501C8A04E459717A5 /* Voice */ = {
+			isa = PBXGroup;
+			children = (
+				E6FD2AF0CEE13DFAF132E373 /* ServeASR.swift */,
+				0F69BA1B159C2C5E9BFB7F04 /* TutorVoice.swift */,
+			);
+			path = Voice;
+			sourceTree = "<group>";
+		};
+		CA1748D75C299748AE904929 /* MetavisionServe */ = {
+			isa = PBXGroup;
+			children = (
+				350EB2B126DF730A5ABE4EDD /* Info.plist */,
+				FBF4AD79E0024EA6102F9C58 /* MetavisionServe.entitlements */,
+				669018AFBA6568549C74F8F2 /* App */,
+				45474DC45BFEA7C78C7D6D4B /* Capture */,
+				67C93A55622F1EAC13FB3093 /* Detection */,
+				37AB48103ADDE898FA783764 /* Feedback */,
+				9DA3B184C81FDBD503732A74 /* Metrics */,
+				E42BDC321238892F909FC381 /* Model */,
+				1630D8E332C75BC7C87C2E37 /* UI */,
+				C33FE11501C8A04E459717A5 /* Voice */,
+			);
+			path = MetavisionServe;
+			sourceTree = "<group>";
+		};
+		E42BDC321238892F909FC381 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EF286B0427CCC06EE8B7F0F5 /* DrillLibrary.swift */,
+				9B685D8EDFB2D9593D8C7580 /* PracticeStore.swift */,
+				4969A03FA8AC798E24616993 /* ServeBatchReport.swift */,
+				4B7463F3F812B26596980F62 /* ServeMetrics.swift */,
+				E46FA13DC032863B1635868D /* ServeSample.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E9450E48C3A1EBFF897CE6F1 /* MetavisionServe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05C22705649CF4073B7C04E4 /* Build configuration list for PBXNativeTarget "MetavisionServe" */;
+			buildPhases = (
+				A0264AE86540C46AB77472DC /* Sources */,
+				B09CA7C75D76671930155569 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MetavisionServe;
+			packageProductDependencies = (
+				1E2AD088797EA5E1CFF28FFC /* MWDATCore */,
+				062BDBA7121473750E8170E9 /* MWDATCamera */,
+				991528A66F0B2976BF725DF5 /* MWDATMockDevice */,
+			);
+			productName = MetavisionServe;
+			productReference = 57814C2F30D4E07B4E21DEAC /* MetavisionServe.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3506E678B6E89D9C22615B33 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = EDF85F2E811D54E7F06675EA /* Build configuration list for PBXProject "MetavisionServe" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 6F4C9EF93CED384751D96D45;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B78CCD257A8F72CF7560C0A3 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 451C339BA3BD7CEAD7715C90 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E9450E48C3A1EBFF897CE6F1 /* MetavisionServe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A0264AE86540C46AB77472DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F2BA46F52B0D414EF8BAA09 /* BallTracker.swift in Sources */,
+				CE3255C6E792F0A35E85167E /* BatchReportView.swift in Sources */,
+				875D331466069FEC013F9250 /* ContentView.swift in Sources */,
+				59B718FDE1557B9EF49D5BFC /* DrillLibrary.swift in Sources */,
+				8BFE708765DFA1D3A8861039 /* FeedbackEngine.swift in Sources */,
+				707617707D22CB483F062B62 /* HSTNSessionManager.swift in Sources */,
+				DEC3AE9AF7B470C27C277146 /* MetavisionServeApp.swift in Sources */,
+				D0C7863F12142F8F2F4DA84F /* OverlayRenderer.swift in Sources */,
+				EB723745AD56DBCDA1610EFD /* PracticeStore.swift in Sources */,
+				6739B523BD1052D102E9AE08 /* ServeASR.swift in Sources */,
+				3720D031AF779978D76720C9 /* ServeBatchReport.swift in Sources */,
+				ED0960F07695A7FF2AB64212 /* ServeClipBuffer.swift in Sources */,
+				45867525C10753B475EA84DE /* ServeConfirmCard.swift in Sources */,
+				F2F9AA9DE546D35351B184A6 /* ServeDetector.swift in Sources */,
+				9D02EEF1FC8E748A1F6F769A /* ServeMetrics.swift in Sources */,
+				88D9123FBC2B5837CA3BCCEF /* ServeMetricsExtractor.swift in Sources */,
+				5ECD99663C8BD59A72CAAF85 /* ServeSample.swift in Sources */,
+				B26CAD99DE598EEEC7299217 /* ServeSessionController.swift in Sources */,
+				986770740B60DE8FEF334514 /* SessionView.swift in Sources */,
+				665AFB741521383A3787A460 /* TutorVoice.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		26F0B03A060A5AAEEE7EB77E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MetavisionServe/MetavisionServe.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = MetavisionServe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.metavision.serve;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		28612121B2C155AA7C60B5B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MetavisionServe/MetavisionServe.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = MetavisionServe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.metavision.serve;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		2F988F33D59D7D61EC0E0A5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		743D44E082C2286291A5C42E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05C22705649CF4073B7C04E4 /* Build configuration list for PBXNativeTarget "MetavisionServe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26F0B03A060A5AAEEE7EB77E /* Debug */,
+				28612121B2C155AA7C60B5B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EDF85F2E811D54E7F06675EA /* Build configuration list for PBXProject "MetavisionServe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				743D44E082C2286291A5C42E /* Debug */,
+				2F988F33D59D7D61EC0E0A5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B78CCD257A8F72CF7560C0A3 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/meta-wearables-dat-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		062BDBA7121473750E8170E9 /* MWDATCamera */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B78CCD257A8F72CF7560C0A3 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATCamera;
+		};
+		1E2AD088797EA5E1CFF28FFC /* MWDATCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B78CCD257A8F72CF7560C0A3 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATCore;
+		};
+		991528A66F0B2976BF725DF5 /* MWDATMockDevice */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B78CCD257A8F72CF7560C0A3 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATMockDevice;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 3506E678B6E89D9C22615B33 /* Project object */;
+}

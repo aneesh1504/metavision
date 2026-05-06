@@ -1,0 +1,58 @@
+[
+  {
+    "id": "toss_stability_shadow",
+    "title": "Shadow Toss — 50 Reps",
+    "trigger": "tossStabilityHigh",
+    "description": "Stand at the baseline without a racket. Toss the ball 50 times, catching it at the apex each time without moving your feet. Goal: the ball lands on the same spot on your palm every rep. Track drift visually.",
+    "durationMinutes": 10
+  },
+  {
+    "id": "eyes_on_ball_coin",
+    "title": "Coin-on-Racket Drill",
+    "trigger": "eyeOnBallLow",
+    "description": "Place a coin on the strings. Toss and swing — if the coin falls, you dropped your gaze before contact. Do 20 serves focusing only on watching the ball until after contact.",
+    "durationMinutes": 15
+  },
+  {
+    "id": "second_serve_routine",
+    "title": "3-Bounce Reset Protocol",
+    "trigger": "secondServeRushed",
+    "description": "Before every second serve, enforce exactly 3 ball bounces and a full breath. Use a metronome app set to your preferred tempo. This rebuilds the same physical routine rhythm as your first serve.",
+    "durationMinutes": 10
+  },
+  {
+    "id": "toss_arc_wall",
+    "title": "Toss-Arc Wall Target",
+    "trigger": "tossArcInconsistent",
+    "description": "Stand arm's length from a fence or wall. Mark a target at trophy height. Toss to that target 30 times without hitting the wall. This constrains your toss to a straight vertical path.",
+    "durationMinutes": 8
+  },
+  {
+    "id": "slow_motion_trophy",
+    "title": "Slow-Motion Trophy Freeze",
+    "trigger": "contactPointVariance",
+    "description": "Serve at 30% speed, stopping at the trophy position for 2 seconds before accelerating through contact. Builds kinesthetic awareness of the position your best serves share.",
+    "durationMinutes": 12
+  },
+  {
+    "id": "flat_serve_target",
+    "title": "Flat T-Serve Targets",
+    "trigger": "serveTypeFlat",
+    "description": "Place two cones at the T on each side. Hit 20 flat first serves per cone. Count how many land within a racket-length of the T. Builds precision from your most aggressive toss position.",
+    "durationMinutes": 20
+  },
+  {
+    "id": "kick_toss_behind",
+    "title": "Kick-Serve Toss Placement",
+    "trigger": "serveTypeKick",
+    "description": "For kick serves, the toss should land slightly behind your head if you let it drop. Practice tossing 20 times and letting the ball drop — it should land 6–8 inches behind your baseline foot. Confirm with video.",
+    "durationMinutes": 10
+  },
+  {
+    "id": "slice_toss_side",
+    "title": "Slice-Serve Toss Drift",
+    "trigger": "serveTypeSlice",
+    "description": "Slice serve toss should drift slightly to your non-dominant side. Mark a spot on the baseline one racket-head width to your right (for right-handers). Toss to that spot 20 times to groove the placement.",
+    "durationMinutes": 10
+  }
+]

@@ -1,0 +1,68 @@
+name: MetavisionServe
+options:
+  bundleIdPrefix: com.metavision
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "15"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+  swiftVersion: "5.9"
+
+packages:
+  meta-wearables-dat-ios:
+    url: https://github.com/facebook/meta-wearables-dat-ios
+    from: 0.6.0
+
+targets:
+  MetavisionServe:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: MetavisionServe
+    resources:
+      - path: Resources/Drills.json
+        buildPhase: resources
+      - path: MockClips
+        buildPhase: resources
+        optional: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.metavision.serve
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_STRICT_CONCURRENCY: targeted
+        ENABLE_PREVIEWS: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      configs:
+        debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+    dependencies:
+      - package: meta-wearables-dat-ios
+        product: MWDATCore
+      - package: meta-wearables-dat-ios
+        product: MWDATCamera
+      - package: meta-wearables-dat-ios
+        product: MWDATMockDevice
+    info:
+      path: MetavisionServe/Info.plist
+      properties:
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        CFBundleURLTypes:
+          - CFBundleURLSchemes:
+              - metavision-serve
+            CFBundleURLName: com.metavision.serve
+        NSCameraUsageDescription: "Streams live video from your Oakley Meta HSTN glasses for serve analysis."
+        NSMicrophoneUsageDescription: "Listens for racket-strike audio and voice labels (in/out, first/second)."
+        NSSpeechRecognitionUsageDescription: "Accepts spoken serve labels so your phone stays in your bag during practice."
+        NSBluetoothAlwaysUsageDescription: "Connects to your Oakley Meta HSTN glasses over Bluetooth."
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UILaunchScreen: {}
+        LSRequiresIPhoneOS: true
+        UIRequiresFullScreen: true
+        UIStatusBarStyle: UIStatusBarStyleLightContent
+    entitlements:
+      path: MetavisionServe/MetavisionServe.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
