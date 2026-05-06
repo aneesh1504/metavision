@@ -14,6 +14,10 @@ final class PracticeStore: ObservableObject {
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
 
+    init() {
+        loadPersistedData()
+    }
+
     // MARK: - Samples
 
     func addSample(_ sample: ServeSample) {
