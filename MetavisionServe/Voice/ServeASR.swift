@@ -26,9 +26,23 @@ final class ServeASR: NSObject {
     // MARK: - Authorization
 
     func requestAuthorization() async -> Bool {
+        let speechAllowed = await requestSpeechAuthorization()
+        guard speechAllowed else { return false }
+        return await requestMicrophoneAuthorization()
+    }
+
+    private func requestSpeechAuthorization() async -> Bool {
         await withCheckedContinuation { continuation in
             SFSpeechRecognizer.requestAuthorization { status in
                 continuation.resume(returning: status == .authorized)
+            }
+        }
+    }
+
+    private func requestMicrophoneAuthorization() async -> Bool {
+        await withCheckedContinuation { continuation in
+            AVAudioSession.sharedInstance().requestRecordPermission { granted in
+                continuation.resume(returning: granted)
             }
         }
     }
@@ -40,7 +54,11 @@ final class ServeASR: NSObject {
     func listenOnce(completion: @escaping (RecognizedLabel) -> Void) {
         stopListening()
 
-        let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+        guard let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US")),
+              recognizer.isAvailable else {
+            completion(.unknown("speech unavailable"))
+            return
+        }
         self.recognizer = recognizer
         let engine = AVAudioEngine()
         audioEngine = engine
@@ -59,6 +77,7 @@ final class ServeASR: NSObject {
         self.request = req
 
         do {
+            try configureAudioSession()
             let node = engine.inputNode
             let format = node.outputFormat(forBus: 0)
             node.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, _ in
@@ -66,11 +85,12 @@ final class ServeASR: NSObject {
             }
             try engine.start()
         } catch {
+            stopListening()
             completion(.unknown("mic error"))
             return
         }
 
-        task = recognizer?.recognitionTask(with: req) { [weak self] result, error in
+        task = recognizer.recognitionTask(with: req) { [weak self] result, error in
             guard let self else { return }
             if let result {
                 let text = result.bestTranscription.formattedString.lowercased().trimmingCharacters(in: .whitespaces)
@@ -105,6 +125,17 @@ final class ServeASR: NSObject {
         audioEngine = nil
         request?.endAudio()
         request = nil
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+    }
+
+    private func configureAudioSession() throws {
+        let audioSession = AVAudioSession.sharedInstance()
+        try audioSession.setCategory(
+            .playAndRecord,
+            mode: .measurement,
+            options: [.allowBluetooth, .defaultToSpeaker, .duckOthers]
+        )
+        try audioSession.setActive(true)
     }
 
     // MARK: - Parsing

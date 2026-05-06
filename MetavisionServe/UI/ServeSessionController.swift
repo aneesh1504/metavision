@@ -94,6 +94,10 @@ final class ServeSessionController: ObservableObject {
 
     private func beginLabelingLoop(_ event: ServeDetectionEvent) async {
         asrFailureCount = 0
+        guard await asr.requestAuthorization() else {
+            fallbackToCard(event: event)
+            return
+        }
 
         // Ask "in or out?" via voice.
         await withCheckedContinuation { cont in
@@ -138,7 +142,10 @@ final class ServeSessionController: ObservableObject {
 
     private func listenForServeNumber(event: ServeDetectionEvent) async {
         await withCheckedContinuation { cont in
-            tutor.speak(.askServeNumber) { }
+            tutor.speak(.askServeNumber) { cont.resume() }
+        }
+
+        await withCheckedContinuation { cont in
             asr.listenOnce { [weak self] label in
                 Task { @MainActor [weak self] in
                     guard let self else { cont.resume(); return }
