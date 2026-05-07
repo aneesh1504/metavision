@@ -28,6 +28,9 @@ final class ServeSessionController: ObservableObject {
     func attach(to manager: HSTNSessionManager, store: PracticeStore) {
         sessionManager = manager
         practiceStore = store
+        confirmedCount = store.confirmedSamples.count
+        pendingConfirm = nil
+        showBatchPrompt = false
         let det = ServeDetector(clipBuffer: manager.clipBuffer)
         detector = det
 
