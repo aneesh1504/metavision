@@ -38,21 +38,28 @@ final class HSTNSessionManager: ObservableObject {
     private var deviceSession: DeviceSession?
     private var streamSession: StreamSession?
     private var videoFrameToken: (any AnyListenerToken)?
+    private var registrationStateToken: (any AnyListenerToken)?
     let clipBuffer = ServeClipBuffer(capacity: 150) // ~6 s at 24 fps
 
     init() {
-        isRegistered = (Wearables.shared.registrationState == .registered)
+        updateRegistrationState(Wearables.shared.registrationState)
+        registrationStateToken = Wearables.shared.addRegistrationStateListener { [weak self] registrationState in
+            Task { @MainActor [weak self] in
+                self?.updateRegistrationState(registrationState)
+            }
+        }
     }
 
     // MARK: - SDK entry points
 
     func handleUrl(_ url: URL) async throws {
         _ = try await Wearables.shared.handleUrl(url)
+        updateRegistrationState(Wearables.shared.registrationState)
     }
 
     func startRegistration() async throws {
         try await Wearables.shared.startRegistration()
-        isRegistered = (Wearables.shared.registrationState == .registered)
+        updateRegistrationState(Wearables.shared.registrationState)
     }
 
     /// Triggered by an explicit user tap so iOS preserves user-gesture
@@ -62,8 +69,8 @@ final class HSTNSessionManager: ObservableObject {
         state = .connecting
         do {
             try await Wearables.shared.startRegistration()
-            isRegistered = (Wearables.shared.registrationState == .registered)
-            state = isRegistered ? .disconnected : .error("Authorization didn't complete — try again.")
+            updateRegistrationState(Wearables.shared.registrationState)
+            state = .disconnected
         } catch {
             state = .error(error.localizedDescription)
         }
@@ -126,5 +133,12 @@ final class HSTNSessionManager: ObservableObject {
         deviceSession?.stop()
         deviceSession = nil
         state = .disconnected
+    }
+
+    private func updateRegistrationState(_ registrationState: RegistrationState) {
+        isRegistered = (registrationState == .registered)
+        if isRegistered && state == .connecting && streamSession == nil {
+            state = .disconnected
+        }
     }
 }
