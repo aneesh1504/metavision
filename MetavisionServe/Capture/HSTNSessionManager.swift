@@ -34,7 +34,9 @@ final class HSTNSessionManager: ObservableObject {
 
     // MARK: - Internal
 
+    private var deviceSession: DeviceSession?
     private var streamSession: StreamSession?
+    private var videoFrameToken: (any AnyListenerToken)?
     let clipBuffer = ServeClipBuffer(capacity: 150) // ~6 s at 24 fps
 
     // MARK: - SDK entry points
@@ -43,8 +45,8 @@ final class HSTNSessionManager: ObservableObject {
         _ = try await Wearables.shared.handleUrl(url)
     }
 
-    func startRegistration() throws {
-        try Wearables.shared.startRegistration()
+    func startRegistration() async throws {
+        try await Wearables.shared.startRegistration()
     }
 
     // MARK: - Connect / disconnect
@@ -54,36 +56,52 @@ final class HSTNSessionManager: ObservableObject {
         state = .connecting
         do {
             let permission = try await Wearables.shared.requestPermission(.camera)
-            guard permission == .authorized else {
+            guard permission == .granted else {
                 state = .error("Camera permission denied — grant access in Settings.")
                 return
             }
+
+            let selector = AutoDeviceSelector(wearables: Wearables.shared)
+            let device = try Wearables.shared.createSession(deviceSelector: selector)
+            deviceSession = device
+
             let config = StreamSessionConfig(
                 videoCodec: .hvc1,
                 resolution: .medium,
                 frameRate: 24
             )
-            let selector = AutoDeviceSelector(wearables: Wearables.shared)
-            let session = StreamSession(streamSessionConfig: config, deviceSelector: selector)
-            streamSession = session
-            await session.start()
-            state = .streaming
-            session.videoFramePublisher.listen { [weak self] frame in
+            guard let stream = try device.addStream(config: config) else {
+                state = .error("Unable to add camera stream to device session.")
+                return
+            }
+            streamSession = stream
+
+            videoFrameToken = stream.videoFramePublisher.listen { [weak self] frame in
+                guard let image = frame.makeUIImage() else { return }
                 Task { @MainActor [weak self] in
                     guard let self else { return }
-                    let image = frame.makeUIImage()
                     self.latestImage = image
                     self.clipBuffer.push(image)
                 }
             }
+
+            await stream.start()
+            state = .streaming
         } catch {
             state = .error(error.localizedDescription)
         }
     }
 
     func disconnect() async {
+        await videoFrameToken?.cancel()
+        videoFrameToken = nil
         await streamSession?.stop()
         streamSession = nil
+        if let device = deviceSession {
+            let stopAsync: () async throws -> Void = device.stop
+            try? await stopAsync()
+        }
+        deviceSession = nil
         state = .disconnected
     }
 }
