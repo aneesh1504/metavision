@@ -54,9 +54,22 @@ final class ServeASR: NSObject {
     func listenOnce(completion: @escaping (RecognizedLabel) -> Void) {
         stopListening()
 
+        // Single-shot guard: cancellation of `task` from `stopListening()` can
+        // re-enter the recognition callback with an error, and the timeout
+        // timer can race with a recognition result. Both must funnel through
+        // `complete` exactly once so the upstream `withCheckedContinuation`
+        // cannot double-resume.
+        var didComplete = false
+        let complete: (RecognizedLabel) -> Void = { [weak self] label in
+            guard !didComplete else { return }
+            didComplete = true
+            self?.stopListening()
+            completion(label)
+        }
+
         guard let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US")),
               recognizer.isAvailable else {
-            completion(.unknown("speech unavailable"))
+            complete(.unknown("speech unavailable"))
             return
         }
         self.recognizer = recognizer
@@ -85,32 +98,26 @@ final class ServeASR: NSObject {
             }
             try engine.start()
         } catch {
-            stopListening()
-            completion(.unknown("mic error"))
+            complete(.unknown("mic error"))
             return
         }
 
-        task = recognizer.recognitionTask(with: req) { [weak self] result, error in
-            guard let self else { return }
+        task = recognizer.recognitionTask(with: req) { result, error in
             if let result {
                 let text = result.bestTranscription.formattedString.lowercased().trimmingCharacters(in: .whitespaces)
                 let label = Self.parse(text)
                 if result.isFinal || Self.isConfident(label) {
-                    self.stopListening()
-                    completion(label)
+                    complete(label)
                 }
             } else if error != nil {
-                self.stopListening()
-                completion(.unknown("recognition error"))
+                complete(.unknown("recognition error"))
             }
         }
 
         // Auto-close after the listen window.
-        listenTimer = Timer.scheduledTimer(withTimeInterval: listenWindowSeconds, repeats: false) { [weak self] _ in
-            Task { @MainActor [weak self] in
-                guard let self, self.task != nil else { return }
-                self.stopListening()
-                completion(.unknown("timeout"))
+        listenTimer = Timer.scheduledTimer(withTimeInterval: listenWindowSeconds, repeats: false) { _ in
+            Task { @MainActor in
+                complete(.unknown("timeout"))
             }
         }
     }
