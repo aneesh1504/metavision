@@ -31,6 +31,7 @@ final class HSTNSessionManager: ObservableObject {
 
     @Published var state: StreamState = .disconnected
     @Published var latestImage: UIImage?
+    @Published var isRegistered: Bool = false
 
     // MARK: - Internal
 
@@ -38,6 +39,10 @@ final class HSTNSessionManager: ObservableObject {
     private var streamSession: StreamSession?
     private var videoFrameToken: (any AnyListenerToken)?
     let clipBuffer = ServeClipBuffer(capacity: 150) // ~6 s at 24 fps
+
+    init() {
+        isRegistered = (Wearables.shared.registrationState == .registered)
+    }
 
     // MARK: - SDK entry points
 
@@ -47,21 +52,34 @@ final class HSTNSessionManager: ObservableObject {
 
     func startRegistration() async throws {
         try await Wearables.shared.startRegistration()
+        isRegistered = (Wearables.shared.registrationState == .registered)
+    }
+
+    /// Triggered by an explicit user tap so iOS preserves user-gesture
+    /// trust when the SDK calls `openURL` to redirect to Meta AI. Do not
+    /// chain other awaits before this.
+    func register() async {
+        state = .connecting
+        do {
+            try await Wearables.shared.startRegistration()
+            isRegistered = (Wearables.shared.registrationState == .registered)
+            state = isRegistered ? .disconnected : .error("Authorization didn't complete — try again.")
+        } catch {
+            state = .error(error.localizedDescription)
+        }
     }
 
     // MARK: - Connect / disconnect
 
     func connect() async {
         guard state == .disconnected else { return }
+        // Defensive: connect() should only be reachable from the UI when
+        // already registered, but if the state ever drifts (e.g. user taps
+        // through a stale view), no-op rather than dropping into .error,
+        // which would hide the Authorize button.
+        guard Wearables.shared.registrationState == .registered else { return }
         state = .connecting
         do {
-            // Ensure the app is registered with Meta AI before requesting
-            // permissions or creating a device session. Without this the
-            // SDK has no account↔app binding and returns "no device config".
-            if Wearables.shared.registrationState != .registered {
-                try await Wearables.shared.startRegistration()
-            }
-
             let permission = try await Wearables.shared.requestPermission(.camera)
             guard permission == .granted else {
                 state = .error("Camera permission denied — grant access in Settings.")

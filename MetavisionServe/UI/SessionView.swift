@@ -75,26 +75,37 @@ struct SessionView: View {
     }
 
     private var controlBar: some View {
-        HStack(spacing: 20) {
-            if sessionManager.state == .disconnected {
-                Button("Connect Glasses") {
-                    Task { await sessionManager.connect() }
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.green)
-            } else if sessionManager.state == .streaming {
-                Button(sessionController.isDetecting ? "Stop" : "Start Serve Practice") {
-                    if sessionController.isDetecting {
-                        sessionController.stop()
-                    } else {
-                        sessionController.start()
+        VStack(spacing: 8) {
+            HStack(spacing: 20) {
+                // Authorize is the recovery action whenever the SDK isn't
+                // registered yet — including from .error, so the user is
+                // never stranded on a red banner with no button to press.
+                if !sessionManager.isRegistered && sessionManager.state != .connecting && sessionManager.state != .streaming {
+                    Button("Authorize Wearables") {
+                        Task { await sessionManager.register() }
                     }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.blue)
+                } else if sessionManager.state == .disconnected {
+                    Button("Connect Glasses") {
+                        Task { await sessionManager.connect() }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.green)
+                } else if sessionManager.state == .streaming {
+                    Button(sessionController.isDetecting ? "Stop" : "Start Serve Practice") {
+                        if sessionController.isDetecting {
+                            sessionController.stop()
+                        } else {
+                            sessionController.start()
+                        }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(sessionController.isDetecting ? .red : .green)
+                } else if sessionManager.state == .connecting {
+                    ProgressView("Connecting…")
+                        .tint(.white)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(sessionController.isDetecting ? .red : .green)
-            } else if sessionManager.state == .connecting {
-                ProgressView("Connecting…")
-                    .tint(.white)
             }
 
             if case .error(let msg) = sessionManager.state {
