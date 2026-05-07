@@ -20,7 +20,6 @@ targets:
     deploymentTarget: "16.0"
     sources:
       - path: MetavisionServe
-    resources:
       - path: Resources/Drills.json
         buildPhase: resources
       - path: MockClips
