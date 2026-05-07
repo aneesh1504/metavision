@@ -45,10 +45,10 @@
 		505764D56FFCD580BE8EA9F5 /* FeedbackEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackEngine.swift; sourceTree = "<group>"; };
 		53AC60BBEA6015FE72F71F63 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5537319BE05BA5203595448D /* BatchReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchReportView.swift; sourceTree = "<group>"; };
-		57814C2F30D4E07B4E21DEAC /* MetavisionServe.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MetavisionServe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		57814C2F30D4E07B4E21DEAC /* MetavisionServe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetavisionServe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BBC4153F6303547EF7C6BCF /* MetavisionServeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetavisionServeApp.swift; sourceTree = "<group>"; };
 		7201D3F665E7AD9495A76F8A /* BallTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallTracker.swift; sourceTree = "<group>"; };
-		75E99D8F16F6C04258909263 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		75E99D8F16F6C04258909263 /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		85B9D52DDA1B47307D62DDDA /* ServeClipBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeClipBuffer.swift; sourceTree = "<group>"; };
 		9B685D8EDFB2D9593D8C7580 /* PracticeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeStore.swift; sourceTree = "<group>"; };
 		AA3746FA9DDA1CF5BF9F86B1 /* ServeConfirmCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServeConfirmCard.swift; sourceTree = "<group>"; };
@@ -236,8 +236,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1500;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = EDF85F2E811D54E7F06675EA /* Build configuration list for PBXProject "MetavisionServe" */;
 			developmentRegion = en;
@@ -310,6 +308,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MetavisionServe/MetavisionServe.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6H5L62SC53;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MetavisionServe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -331,6 +330,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MetavisionServe/MetavisionServe.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6H5L62SC53;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MetavisionServe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
