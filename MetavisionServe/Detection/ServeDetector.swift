@@ -21,10 +21,17 @@ final class ServeDetector: ObservableObject {
 
     @Published var isWatching = false
 
-    private var ballTracker: BallTracker?
     private let clipBuffer: ServeClipBuffer
+    private let detectionQueue = DispatchQueue(label: "com.metavision.serve.detector", qos: .userInitiated)
     private var frameCount = 0
+    private var isProcessingFrame = false
+    private var lastObservation: (observation: BallObservation, frameNumber: Int)?
     private var state: DetectionState = .idle
+
+    private struct TrackedObservation {
+        let observation: BallObservation
+        let velocity: CGVector
+    }
 
     private enum DetectionState {
         case idle
@@ -34,32 +41,39 @@ final class ServeDetector: ObservableObject {
 
     init(clipBuffer: ServeClipBuffer) {
         self.clipBuffer = clipBuffer
-        self.ballTracker = BallTracker()
     }
 
     // MARK: - Feed frames
 
     /// Call this for every incoming VideoFrame. Runs the lightweight detection heuristic.
     func feed(_ image: UIImage) {
-        guard isWatching else { return }
+        guard isWatching, !isProcessingFrame else { return }
         frameCount += 1
+        let frameNumber = frameCount
+        isProcessingFrame = true
 
         // Phase 0 stub: use BallTracker to find the ball, then run the state machine.
         // Full Vision trajectory request will replace this in Phase 3.
-        ballTracker?.detect(in: image) { [weak self] observation in
-            guard let self else { return }
-            self.advance(observation: observation, frame: image)
+        detectionQueue.async {
+            let observation = BallTracker().detect(in: image)
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                self.isProcessingFrame = false
+                guard self.isWatching else { return }
+                let tracked = self.trackedObservation(from: observation, frameNumber: frameNumber)
+                self.advance(observation: tracked, frameNumber: frameNumber)
+            }
         }
     }
 
     // MARK: - State machine
 
-    private func advance(observation: BallObservation?, frame: UIImage) {
+    private func advance(observation: TrackedObservation?, frameNumber: Int) {
         switch state {
         case .idle:
             // Transition to tossInProgress if ball appears in lower half moving upward.
-            if let obs = observation, obs.normalizedY > 0.5, obs.velocity.dy < -0.02 {
-                state = .tossInProgress(startFrame: frameCount)
+            if let obs = observation, obs.observation.normalizedY > 0.5, obs.velocity.dy < -0.02 {
+                state = .tossInProgress(startFrame: frameNumber)
             }
 
         case .tossInProgress(let start):
@@ -67,20 +81,38 @@ final class ServeDetector: ObservableObject {
             if let obs = observation {
                 if obs.velocity.dy > 0.01 || abs(obs.velocity.dx) > 0.15 {
                     // Trajectory changed — likely contact or return downward.
-                    state = .postContact(startFrame: start, contactFrame: frameCount)
-                    emitEvent(startFrameOffset: frameCount - start, contactOffset: frameCount - start)
+                    state = .postContact(startFrame: start, contactFrame: frameNumber)
+                    emitEvent(startFrameOffset: frameNumber - start, contactOffset: frameNumber - start)
                 }
-            } else if frameCount - start > 72 {
+            } else if frameNumber - start > 72 {
                 // Ball out of frame for > 3 s — reset
                 state = .idle
             }
 
-        case .postContact:
+        case .postContact(_, let contact):
             // Reset after a short cooldown.
-            if frameCount.isMultiple(of: 48) {
+            if frameNumber - contact >= 48 {
                 state = .idle
             }
         }
+    }
+
+    private func trackedObservation(from observation: BallObservation?, frameNumber: Int) -> TrackedObservation? {
+        guard let observation else { return nil }
+        defer {
+            lastObservation = (observation, frameNumber)
+        }
+
+        guard let lastObservation else {
+            return TrackedObservation(observation: observation, velocity: .zero)
+        }
+
+        let frameDelta = CGFloat(max(1, frameNumber - lastObservation.frameNumber))
+        let velocity = CGVector(
+            dx: (observation.normalizedX - lastObservation.observation.normalizedX) / frameDelta,
+            dy: (observation.normalizedY - lastObservation.observation.normalizedY) / frameDelta
+        )
+        return TrackedObservation(observation: observation, velocity: velocity)
     }
 
     private func emitEvent(startFrameOffset: Int, contactOffset: Int) {
@@ -102,9 +134,12 @@ final class ServeDetector: ObservableObject {
         isWatching = true
         state = .idle
         frameCount = 0
+        isProcessingFrame = false
+        lastObservation = nil
     }
 
     func stopWatching() {
         isWatching = false
+        lastObservation = nil
     }
 }
