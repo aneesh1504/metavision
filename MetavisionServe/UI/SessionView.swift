@@ -108,6 +108,13 @@ struct SessionView: View {
                 }
             }
 
+            if sessionManager.isRegistered && sessionManager.state != .streaming {
+                Text(sessionManager.deviceAvailabilityText)
+                    .font(.caption2)
+                    .foregroundStyle(sessionManager.hasEligibleDevice ? .green : .secondary)
+                    .multilineTextAlignment(.center)
+            }
+
             if case .error(let msg) = sessionManager.state {
                 Text(msg)
                     .font(.caption)
