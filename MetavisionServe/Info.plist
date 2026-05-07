@@ -33,6 +33,8 @@
 	<true/>
 	<key>MWDAT</key>
 	<dict>
+		<key>AppLinkURLScheme</key>
+		<string>metavision-serve://callback</string>
 		<key>MetaAppID</key>
 		<string>841873954919099</string>
 		<key>ClientToken</key>
