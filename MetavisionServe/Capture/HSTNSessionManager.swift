@@ -73,10 +73,11 @@ final class HSTNSessionManager: ObservableObject {
 
     func connect() async {
         guard state == .disconnected else { return }
-        guard Wearables.shared.registrationState == .registered else {
-            state = .error("Tap Authorize Wearables first.")
-            return
-        }
+        // Defensive: connect() should only be reachable from the UI when
+        // already registered, but if the state ever drifts (e.g. user taps
+        // through a stale view), no-op rather than dropping into .error,
+        // which would hide the Authorize button.
+        guard Wearables.shared.registrationState == .registered else { return }
         state = .connecting
         do {
             let permission = try await Wearables.shared.requestPermission(.camera)
