@@ -31,6 +31,15 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MWDAT</key>
+	<dict>
+		<key>MetaAppID</key>
+		<string>841873954919099</string>
+		<key>ClientToken</key>
+		<string>AR|841873954919099|fcdc915a9b0caafaf703f7fac37d7ac0</string>
+		<key>TeamID</key>
+		<string>$(DEVELOPMENT_TEAM)</string>
+	</dict>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Connects to your Oakley Meta HSTN glasses over Bluetooth.</string>
 	<key>NSCameraUsageDescription</key>

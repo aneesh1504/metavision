@@ -28,6 +28,7 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.metavision.serve
+        DEVELOPMENT_TEAM: 6H5L62SC53
         TARGETED_DEVICE_FAMILY: "1"
         SWIFT_STRICT_CONCURRENCY: targeted
         ENABLE_PREVIEWS: YES
@@ -55,6 +56,10 @@ targets:
         NSMicrophoneUsageDescription: "Listens for racket-strike audio and voice labels (in/out, first/second)."
         NSSpeechRecognitionUsageDescription: "Accepts spoken serve labels so your phone stays in your bag during practice."
         NSBluetoothAlwaysUsageDescription: "Connects to your Oakley Meta HSTN glasses over Bluetooth."
+        MWDAT:
+          MetaAppID: "841873954919099"
+          ClientToken: "AR|841873954919099|fcdc915a9b0caafaf703f7fac37d7ac0"
+          TeamID: "$(DEVELOPMENT_TEAM)"
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
         UILaunchScreen: {}
