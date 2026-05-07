@@ -76,7 +76,13 @@ struct SessionView: View {
 
     private var controlBar: some View {
         HStack(spacing: 20) {
-            if sessionManager.state == .disconnected {
+            if sessionManager.state == .disconnected && !sessionManager.isRegistered {
+                Button("Authorize Wearables") {
+                    Task { await sessionManager.register() }
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.blue)
+            } else if sessionManager.state == .disconnected {
                 Button("Connect Glasses") {
                     Task { await sessionManager.connect() }
                 }
