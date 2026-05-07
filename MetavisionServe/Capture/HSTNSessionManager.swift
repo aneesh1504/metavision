@@ -55,6 +55,13 @@ final class HSTNSessionManager: ObservableObject {
         guard state == .disconnected else { return }
         state = .connecting
         do {
+            // Ensure the app is registered with Meta AI before requesting
+            // permissions or creating a device session. Without this the
+            // SDK has no account↔app binding and returns "no device config".
+            if Wearables.shared.registrationState != .registered {
+                try await Wearables.shared.startRegistration()
+            }
+
             let permission = try await Wearables.shared.requestPermission(.camera)
             guard permission == .granted else {
                 state = .error("Camera permission denied — grant access in Settings.")
