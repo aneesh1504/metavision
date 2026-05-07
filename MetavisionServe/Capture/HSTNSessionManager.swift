@@ -85,6 +85,7 @@ final class HSTNSessionManager: ObservableObject {
                 }
             }
 
+            try device.start()
             await stream.start()
             state = .streaming
         } catch {
@@ -97,10 +98,7 @@ final class HSTNSessionManager: ObservableObject {
         videoFrameToken = nil
         await streamSession?.stop()
         streamSession = nil
-        if let device = deviceSession {
-            let stopAsync: () async throws -> Void = device.stop
-            try? await stopAsync()
-        }
+        deviceSession?.stop()
         deviceSession = nil
         state = .disconnected
     }
