@@ -4,14 +4,22 @@ import UIKit
 /// Must be called on a background thread — blocks until Vision processing completes.
 struct ServeMetricsExtractor {
 
+    private struct TimedObservation {
+        let obs: BallObservation
+        let ts: Date
+        let frameIndex: Int
+    }
+
     static func extract(from frames: [(image: UIImage, timestamp: Date)]) -> ServeMetrics {
         let tracker = BallTracker()
 
         // Process frames sequentially so we preserve temporal order for velocity.
-        var observations: [(obs: BallObservation, ts: Date)] = []
-        for (image, ts) in frames {
+        var observations: [TimedObservation] = []
+        for (frameIndex, frame) in frames.enumerated() {
+            let image = frame.image
+            let ts = frame.timestamp
             if let obs = tracker.detect(in: image) {
-                observations.append((obs, ts))
+                observations.append(TimedObservation(obs: obs, ts: ts, frameIndex: frameIndex))
             }
         }
 
@@ -21,7 +29,7 @@ struct ServeMetricsExtractor {
     // MARK: - Computation
 
     private static func compute(
-        from observations: [(obs: BallObservation, ts: Date)],
+        from observations: [TimedObservation],
         totalFrames: Int
     ) -> ServeMetrics {
         guard !observations.isEmpty else { return ServeMetrics.empty }
@@ -38,12 +46,13 @@ struct ServeMetricsExtractor {
 
         // Eye-on-ball: fraction of the toss duration (frame 0 → apex) where
         // the ball was detected. Uses total-frames denominator, not detected-frames.
-        let tossFrameCount = Double(apexIndex + 1)
-        let detectedInToss = Double(min(observations.count, apexIndex + 1))
-        let eyeOnBall = tossFrameCount > 0 ? detectedInToss / tossFrameCount : 0
+        let apexFrameIndex = observations[apexIndex].frameIndex
+        let tossFrameCount = Double(apexFrameIndex + 1)
+        let detectedInToss = Double(observations.filter { $0.frameIndex <= apexFrameIndex }.count)
+        let eyeOnBall = tossFrameCount > 0 ? min(1.0, detectedInToss / tossFrameCount) : 0
 
         // Post-contact observations for serve-type guess.
-        let withVelocities = velocities(from: observations)
+        let withVelocities = velocities(from: observations.map { (obs: $0.obs, ts: $0.ts) })
         let postContactVels = withVelocities.dropFirst(apexIndex).compactMap(\.velocity)
         let serveTypeGuess = classifyServeType(from: postContactVels)
 
