@@ -16,29 +16,29 @@ struct BallTracker {
     /// Must be called on a background thread for sequences; safe to call anywhere.
     func detect(in image: UIImage) -> BallObservation? {
         guard let cgImage = image.cgImage else { return nil }
-        var result: BallObservation?
-        let semaphore = DispatchSemaphore(value: 0)
 
-        let request = VNDetectRectanglesRequest { req, _ in
-            defer { semaphore.signal() }
-            guard let results = req.results as? [VNRectangleObservation] else { return }
-            // Tennis ball is roughly circular; filter by aspect ratio.
-            if let best = results.first(where: { obs in
-                let a = obs.boundingBox.width / obs.boundingBox.height
-                return a > 0.65 && a < 1.55 && obs.confidence > 0.3
-            }) {
-                let cx = best.boundingBox.midX
-                let cy = 1.0 - best.boundingBox.midY  // flip Vision y to UIKit
-                result = BallObservation(normalizedX: cx, normalizedY: cy, confidence: best.confidence)
-            }
-        }
+        let request = VNDetectRectanglesRequest()
         request.minimumSize = 0.01
         request.maximumObservations = 5
 
         let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-        try? handler.perform([request])
-        semaphore.wait()
-        return result
+        do {
+            try handler.perform([request])
+        } catch {
+            return nil
+        }
+
+        // Tennis ball is roughly circular; filter by aspect ratio.
+        guard let best = request.results?.first(where: { obs in
+            let a = obs.boundingBox.width / obs.boundingBox.height
+            return a > 0.65 && a < 1.55 && obs.confidence > 0.3
+        }) else {
+            return nil
+        }
+
+        let cx = best.boundingBox.midX
+        let cy = 1.0 - best.boundingBox.midY  // flip Vision y to UIKit
+        return BallObservation(normalizedX: cx, normalizedY: cy, confidence: best.confidence)
     }
 }
 
