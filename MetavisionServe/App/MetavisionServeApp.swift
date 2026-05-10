@@ -3,8 +3,8 @@ import MWDATCore
 
 @main
 struct MetavisionServeApp: App {
-    @StateObject private var sessionManager = HSTNSessionManager()
-    @StateObject private var practiceStore = PracticeStore()
+    @StateObject private var sessionManager: HSTNSessionManager
+    @StateObject private var practiceStore: PracticeStore
 
     init() {
         do {
@@ -12,6 +12,9 @@ struct MetavisionServeApp: App {
         } catch {
             print("Wearables configure failed: \(error)")
         }
+
+        _sessionManager = StateObject(wrappedValue: HSTNSessionManager())
+        _practiceStore = StateObject(wrappedValue: PracticeStore())
     }
 
     var body: some Scene {
